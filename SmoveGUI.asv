@@ -80,13 +80,11 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 dadosDados = load('massa_de_teste.txt');
-
+disp (dadosDados);
 mediaDados = mean(dadosDados);
-mediaMinimo = min(dadosDados);
-mediaMaximo = max(dadosDados);
+disp (mediaDados);
+mediaMinimo = min(dadoDados)
+mediaMaximo = max(dadoDados)
 
-disp (["media", mediaDados])
-disp (["Valor minimo", mediaMinimo])
-disp (["Valor maximo", mediaMaximo])
 
 disp('botão click')
