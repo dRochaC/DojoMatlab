@@ -79,7 +79,10 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-dadosDados = load('massa_de_teste.txt');
+%dadosDados = load('massa_de_teste.txt')
+
+data = xlsread ('Acelerômetro.xlsx')
+dadosDados = data(:,1)
 
 mediaDados = mean(dadosDados);
 mediaMinimo = min(dadosDados);
@@ -88,5 +91,6 @@ mediaMaximo = max(dadosDados);
 disp (["media", mediaDados])
 disp (["Valor minimo", mediaMinimo])
 disp (["Valor maximo", mediaMaximo])
+
 
 disp('botão click')
