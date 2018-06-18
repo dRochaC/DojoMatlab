@@ -81,16 +81,17 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 
 %dadosDados = load('massa_de_teste.txt')
 
-data = xlsread ('Acelerômetro.xlsx')
-dadosDados = data(:,1)
+data = xlsread ('Acelerômetro.xlsx');
+dadosDados = data(:,1);
 
 mediaDados = mean(dadosDados);
 mediaMinimo = min(dadosDados);
 mediaMaximo = max(dadosDados);
 
-disp (["media", mediaDados])
-disp (["Valor minimo", mediaMinimo])
-disp (["Valor maximo", mediaMaximo])
+disp (["media", mediaDados]);
+disp (["Valor minimo", mediaMinimo]);
+disp (["Valor maximo", mediaMaximo]);
 
+axes2 = plot (data (:,1))
 
 disp('botão click')
