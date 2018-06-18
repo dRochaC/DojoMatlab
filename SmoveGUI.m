@@ -22,7 +22,7 @@ function varargout = SmoveGUI(varargin)
 
 % Edit the above text to modify the response to help SmoveGUI
 
-% Last Modified by GUIDE v2.5 09-Jun-2018 21:23:01
+% Last Modified by GUIDE v2.5 17-Jun-2018 21:43:44
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -43,6 +43,14 @@ else
 end
 % End initialization code - DO NOT EDIT
 
+
+
+%----------------------------------------------//-------------------------------------------------
+
+
+
+%Lê o excel
+data = xlsread ('Acelerometro.xlsx');
 
 % --- Executes just before SmoveGUI is made visible.
 function SmoveGUI_OpeningFcn(hObject, eventdata, handles, varargin)
@@ -81,7 +89,6 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 
 %dadosDados = load('massa_de_teste.txt')
 
-data = xlsread ('Acelerômetro.xlsx');
 dadosDados = data(:,1);
 
 mediaDados = mean(dadosDados);
@@ -92,6 +99,22 @@ disp (["media", mediaDados]);
 disp (["Valor minimo", mediaMinimo]);
 disp (["Valor maximo", mediaMaximo]);
 
-axes2 = plot (data (:,1))
+accNormal = plot (data (:,1))
 
 disp('botão click')
+
+
+% --- Executes on button press in rawButton.
+function rawButton_Callback(hObject, eventdata, handles)
+% hObject    handle to rawButton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in filterButtom.
+function filterButtom_Callback(hObject, eventdata, handles)
+% hObject    handle to filterButtom (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+

@@ -22,7 +22,7 @@ function varargout = SmoveGUI(varargin)
 
 % Edit the above text to modify the response to help SmoveGUI
 
-% Last Modified by GUIDE v2.5 09-Jun-2018 21:23:01
+% Last Modified by GUIDE v2.5 17-Jun-2018 21:35:18
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -79,15 +79,42 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-dadosDados = load('massa_de_teste.txt')
+%dadosDados = load('massa_de_teste.txt')
+
+data = xlsread ('Acelerometro.xlsx');
+dadosDados = data(:,1);
 
 mediaDados = mean(dadosDados);
 mediaMinimo = min(dadosDados);
 mediaMaximo = max(dadosDados);
 
-disp (["media", mediaDados])
-disp (["Valor minimo", mediaMinimo])
-disp (["Valor maximo", mediaMaximo])
+disp (["media", mediaDados]);
+disp (["Valor minimo", mediaMinimo]);
+disp (["Valor maximo", mediaMaximo]);
 
+accNormal = plot (data (:,1))
+axes2 = plot (data (:,1))
+axes2 = plot (data (:,1))
 
 disp('botão click')
+
+
+% --- Executes on button press in pushbutton2.
+function pushbutton2_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton3.
+function pushbutton3_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton4.
+function pushbutton4_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
