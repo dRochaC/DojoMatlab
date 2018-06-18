@@ -89,6 +89,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 
 %dadosDados = load('massa_de_teste.txt')
 
+data = xlsread ('Acelerometro.xlsx');
 dadosDados = data(:,1);
 
 mediaDados = mean(dadosDados);
@@ -99,8 +100,9 @@ disp (["media", mediaDados]);
 disp (["Valor minimo", mediaMinimo]);
 disp (["Valor maximo", mediaMaximo]);
 
-accNormal = plot (data (:,1))
-
+axesBruto = findobj('Tag', 'axesBruto');
+graficoPlot = data (:,1)
+plot (axesBruto,[1 2 3],[1 2 3])
 disp('botão click')
 
 
