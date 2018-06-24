@@ -97,7 +97,7 @@ function rawButton_Callback(hObject, eventdata, handles)
 % hObject    handle to rawButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-data = xlsread ('Acelerometro.xlsx');
+data = xlsread ('Dados de exemplo/Acelerometro.xlsx');
 dadosDados = data(:,1);
 accBruto = findobj('Tag', 'accBruto');
 graficoPlot = data (:,1);
@@ -109,9 +109,12 @@ function filterButtom_Callback(hObject, eventdata, handles)
 % hObject    handle to filterButtom (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-data = xlsread ('Acelerometro.xlsx');
+data = xlsread ('Dados de exemplo/Acelerometro.xlsx');
 dadosDados = data(:,1);
-[b, a] = butter(6,0.012,'low');
+filterOrder = 6;
+Fc = 6;
+frequency = 100;
+[b, a] = butter(filterOrder,Fc/(frequecy/2),'low');
 result = filter(b,a,dadosDados);
 axes4 = findobj('Tag', 'axes4');
 graficoPlot = (result);
