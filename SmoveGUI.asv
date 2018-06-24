@@ -89,20 +89,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 
 %dadosDados = load('massa_de_teste.txt')
 
-data = xlsread ('Acelerometro.xlsx');
-dadosDados = data(:,1);
 
-mediaDados = mean(dadosDados);
-mediaMinimo = min(dadosDados);
-mediaMaximo = max(dadosDados);
-
-disp (["media", mediaDados]);
-disp (["Valor minimo", mediaMinimo]);
-disp (["Valor maximo", mediaMaximo]);
-
-axesBruto = plot (data (:,1))
-
-disp('botão click')
 
 
 % --- Executes on button press in rawButton.
@@ -110,6 +97,11 @@ function rawButton_Callback(hObject, eventdata, handles)
 % hObject    handle to rawButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+data = xlsread ('Acelerometro.xlsx');
+dadosDados = data(:,1);
+accBruto = findobj('Tag', 'accBruto');
+graficoPlot = data (:,1);
+plot (accBruto,dadosDados)
 
 
 % --- Executes on button press in filterButtom.
@@ -117,5 +109,18 @@ function filterButtom_Callback(hObject, eventdata, handles)
 % hObject    handle to filterButtom (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+data = xlsread ('Acelerometro.xlsx');
+dadosDados = data(:,1);
+[b, a] = butter(6, 6 / (100/2), 'low');
+filter(b,a,dadosDados);
+
+
+
+%axes4 = findobj('Tag', 'axes4');
+%graficoPlot = data (:,1);
+%plot (axes4,dadosDados)
+
+
+
 
 
