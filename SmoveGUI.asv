@@ -66,12 +66,13 @@ function rawButton_Callback(hObject, eventdata, handles)
 %Puxa os Excel
 dataSheet = xlsread('Dados de exemplo/salto_exemplo_4m.xls', 'dados');
 
-%Puxa os dados
+%Puxa e manipula os dados
 dadosAccX = dataSheet(:,1);
 
 %Plota 
-accBruto = findobj('Tag', 'accBruto');
-plot (accBruto,dadosAccX)
+accXGraph = findobj('Tag', 'accBruto');
+plot (accXGraph, dadosAccX)
+
 
 
 % --- Executes on button press in filterButtom.
@@ -95,7 +96,7 @@ frequency = 100;
 result = filter(b,a,dadosAccX);
 axes4 = findobj('Tag', 'axes4');
 graficoPlot = (result);
-plot (axes4,result)
+plot (axes4, result)
 
 
 

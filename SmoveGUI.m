@@ -1,4 +1,7 @@
 function varargout = SmoveGUI(varargin)
+%Global variables
+global pathJump;
+pathJump = 'Dados de exemplo/salto_exemplo_4m.xls';
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -40,18 +43,13 @@ handles.output = hObject;
 % Update handles structure
 guidata(hObject, handles);
 
+
 % UIWAIT makes SmoveGUI wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
 
 % --- Outputs from this function are returned to the command line.
 function varargout = SmoveGUI_OutputFcn(hObject, eventdata, handles) 
-% varargout  cell array for returning output args (see VARARGOUT);
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Get default command line output from handles structure
 varargout{1} = handles.output;
 
 
@@ -59,12 +57,10 @@ varargout{1} = handles.output;
 
 % --- Executes on button press in rawButton.
 function rawButton_Callback(hObject, eventdata, handles)
-% hObject    handle to rawButton (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+global pathJump;
 
 %Puxa os Excel
-dataSheet = xlsread('Dados de exemplo/salto_exemplo_4m.xls', 'dados');
+dataSheet = xlsread(pathJump, 'dados');
 
 %Puxa e manipula os dados
 dadosAccX = dataSheet(:,1);
@@ -73,16 +69,13 @@ dadosAccX = dataSheet(:,1);
 accXGraph = findobj('Tag', 'accBruto');
 plot (accXGraph, dadosAccX)
 
-
 % --- Executes on button press in filterButtom.
 function filterButtom_Callback(hObject, eventdata, handles)
-% hObject    handle to filterButtom (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+global pathJump;
 
 %Puxa os Excel
-dataSheet = xlsread('Dados de exemplo/salto_exemplo_4m.xls', 'dados');
-infoSheet = xlsread('Dados de exemplo/salto_exemplo_4m.xls', 'sobre');
+dataSheet = xlsread(pathJump, 'dados');
+infoSheet = xlsread(pathJump, 'sobre');
 
 %Puxa os dados
 dadosAccX = dataSheet(:,1);
@@ -96,11 +89,3 @@ result = filter(b,a,dadosAccX);
 axes4 = findobj('Tag', 'axes4');
 graficoPlot = (result);
 plot (axes4, result)
-
-
-
-
-
-
-
-
