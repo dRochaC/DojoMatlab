@@ -49,8 +49,6 @@ end
 
 
 
-%Lê o excel
-data = xlsread ('Acelerometro.xlsx');
 
 % --- Executes just before SmoveGUI is made visible.
 function SmoveGUI_OpeningFcn(hObject, eventdata, handles, varargin)
@@ -97,7 +95,8 @@ function rawButton_Callback(hObject, eventdata, handles)
 % hObject    handle to rawButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-data = xlsread ('Dados de exemplo/Acelerometro.xlsx');
+data = xlsread('Dados de exemplo/salto_exemplo_4m.xls', 'dados', 'A5:A1687')
+%data = xlsread ('Dados de exemplo/Acelerometro.xlsx');
 dadosDados = data(:,1);
 accBruto = findobj('Tag', 'accBruto');
 graficoPlot = data (:,1);
@@ -109,11 +108,12 @@ function filterButtom_Callback(hObject, eventdata, handles)
 % hObject    handle to filterButtom (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-data = xlsread ('Dados de exemplo/Acelerometro.xlsx');
+data = xlsread('Dados de exemplo/salto_exemplo_4m.xls', 'dados', 'CA5:CA1687')
+%data = xlsread ('Dados de exemplo/Acelerometro.xlsx');
 dadosDados = data(:,1);
 filterOrder = 6;
 Fc = 6;
-freqNyq = 100;
+frequency = 100;
 [b, a] = butter(filterOrder,Fc/(frequecy/2),'low');
 result = filter(b,a,dadosDados);
 axes4 = findobj('Tag', 'axes4');

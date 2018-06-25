@@ -1,28 +1,4 @@
 function varargout = SmoveGUI(varargin)
-% SMOVEGUI MATLAB code for SmoveGUI.fig
-%      SMOVEGUI, by itself, creates a new SMOVEGUI or raises the existing
-%      singleton*.
-%
-%      H = SMOVEGUI returns the handle to a new SMOVEGUI or the handle to
-%      the existing singleton*.
-%
-%      SMOVEGUI('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in SMOVEGUI.M with the given input arguments.
-%
-%      SMOVEGUI('Property','Value',...) creates a new SMOVEGUI or raises the
-%      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before SmoveGUI_OpeningFcn gets called.  An
-%      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to SmoveGUI_OpeningFcn via varargin.
-%
-%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
-%      instance to run (singleton)".
-%
-% See also: GUIDE, GUIDATA, GUIHANDLES
-
-% Edit the above text to modify the response to help SmoveGUI
-
-% Last Modified by GUIDE v2.5 17-Jun-2018 21:43:44
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -49,8 +25,6 @@ end
 
 
 
-%Lê o excel
-data = xlsread ('Acelerometro.xlsx');
 
 % --- Executes just before SmoveGUI is made visible.
 function SmoveGUI_OpeningFcn(hObject, eventdata, handles, varargin)
@@ -81,15 +55,6 @@ function varargout = SmoveGUI_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in pushbutton1.
-function pushbutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-%dadosDados = load('massa_de_teste.txt')
-
-
 
 
 % --- Executes on button press in rawButton.
@@ -97,7 +62,8 @@ function rawButton_Callback(hObject, eventdata, handles)
 % hObject    handle to rawButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-data = xlsread ('Dados de exemplo/Acelerometro.xlsx');
+data = xlsread('Dados de exemplo/salto_exemplo_4m.xls')
+%data = xlsread ('Dados de exemplo/Acelerometro.xlsx');
 dadosDados = data(:,1);
 accBruto = findobj('Tag', 'accBruto');
 graficoPlot = data (:,1);
@@ -109,7 +75,8 @@ function filterButtom_Callback(hObject, eventdata, handles)
 % hObject    handle to filterButtom (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-data = xlsread ('Dados de exemplo/Acelerometro.xlsx');
+data = xlsread('Dados de exemplo/salto_exemplo_4m.xls', 'dados')
+%data = xlsread ('Dados de exemplo/Acelerometro.xlsx');
 dadosDados = data(:,1);
 filterOrder = 6;
 Fc = 6;
