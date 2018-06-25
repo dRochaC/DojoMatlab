@@ -75,15 +75,17 @@ global pathJump;
 
 %Puxa os Excel
 dataSheet = xlsread(pathJump, 'dados');
-infoSheet = xlsread(pathJump, 'sobre');
+% Puxar dados numéricos, caracteres e outros
+[a, infoSheet, c] = xlsread(pathJump, 'sobre');
 
 %Puxa os dados
 dadosAccX = dataSheet(:,1);
+% Transformar caracteres em números
+frequency = str2double(infoSheet(4,2));
 
-%Fitlro
+%Filtro
 filterOrder = 6;
 Fc = 6;
-frequency = 100;
 [b, a] = butter(filterOrder,Fc/(frequency/2),'low');
 result = filter(b,a,dadosAccX);
 axes4 = findobj('Tag', 'axes4');
