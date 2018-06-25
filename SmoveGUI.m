@@ -62,12 +62,16 @@ function rawButton_Callback(hObject, eventdata, handles)
 % hObject    handle to rawButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-data = xlsread('Dados de exemplo/salto_exemplo_4m.xls')
-%data = xlsread ('Dados de exemplo/Acelerometro.xlsx');
-dadosDados = data(:,1);
-accBruto = findobj('Tag', 'accBruto');
-graficoPlot = data (:,1);
-plot (accBruto,dadosDados)
+
+%Puxa os Excel
+dataSheet = xlsread('Dados de exemplo/salto_exemplo_4m.xls', 'dados');
+
+%Puxa e manipula os dados
+dadosAccX = dataSheet(:,1);
+
+%Plota 
+accXGraph = findobj('Tag', 'accBruto');
+plot (accXGraph, dadosAccX)
 
 
 % --- Executes on button press in filterButtom.
@@ -75,17 +79,23 @@ function filterButtom_Callback(hObject, eventdata, handles)
 % hObject    handle to filterButtom (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-data = xlsread('Dados de exemplo/salto_exemplo_4m.xls', 'dados')
-%data = xlsread ('Dados de exemplo/Acelerometro.xlsx');
-dadosDados = data(:,1);
+
+%Puxa os Excel
+dataSheet = xlsread('Dados de exemplo/salto_exemplo_4m.xls', 'dados');
+infoSheet = xlsread('Dados de exemplo/salto_exemplo_4m.xls', 'sobre');
+
+%Puxa os dados
+dadosAccX = dataSheet(:,1);
+
+%Fitlro
 filterOrder = 6;
 Fc = 6;
 frequency = 100;
-[b, a] = butter(filterOrder,Fc/(frequecy/2),'low');
-result = filter(b,a,dadosDados);
+[b, a] = butter(filterOrder,Fc/(frequency/2),'low');
+result = filter(b,a,dadosAccX);
 axes4 = findobj('Tag', 'axes4');
 graficoPlot = (result);
-plot (axes4,result)
+plot (axes4, result)
 
 
 
