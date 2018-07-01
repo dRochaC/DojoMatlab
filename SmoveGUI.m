@@ -53,8 +53,6 @@ function varargout = SmoveGUI_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-
-
 % --- Executes on button press in rawButton.
 function rawButton_Callback(hObject, eventdata, handles)
 global pathJump;
@@ -64,10 +62,18 @@ dataSheet = xlsread(pathJump, 'dados');
 
 %Puxa e manipula os dados
 dadosAccX = dataSheet(:,1);
+dadosAccX2 = dataSheet(:,2);
+dadosAccX3 = dataSheet(:,3);
 
 %Plota 
 accXGraph = findobj('Tag', 'accBruto');
-plot (accXGraph, dadosAccX)
+plot (accXGraph, dadosAccX, 'g')
+hold on
+plot (accXGraph, dadosAccX2, 'r')
+hold on
+plot (accXGraph, dadosAccX3, 'b')
+hold off
+
 
 % --- Executes on button press in filterButtom.
 function filterButtom_Callback(hObject, eventdata, handles)
@@ -80,6 +86,9 @@ dataSheet = xlsread(pathJump, 'dados');
 
 %Puxa os dados
 dadosAccX = dataSheet(:,1);
+dadosAccX2 = dataSheet(:,2);
+dadosAccX3 = dataSheet(:,3);
+
 % Transformar caracteres em números
 frequency = str2double(infoSheet(4,2));
 
@@ -88,6 +97,24 @@ filterOrder = 6;
 Fc = 6;
 [b, a] = butter(filterOrder,Fc/(frequency/2),'low');
 result = filter(b,a,dadosAccX);
+result2 = filter(b,a,dadosAccX2);
+result3 = filter(b,a,dadosAccX3);
+
 axes4 = findobj('Tag', 'axes4');
-graficoPlot = (result);
-plot (axes4, result)
+plot (axes4, result, 'g')
+hold on
+plot (axes4, result2, 'r')
+hold on
+plot (axes4, result3, 'b')
+hold off
+ylabel ('Oscilação')
+xlabel ('Tempo')
+legend ('AccX','AccX2', 'AccX3')
+title ('Gráfico 2: Acc com filtro')
+
+%Caixa de diálogo
+%FirstBox = inputdlg({'Email', 'Senha'}, 'Login', [1 50;1 50]);
+%Menu = menu('Avaliações','Salto','Marcha');
+%Arquivo = uigetfile('*xls');
+%Selecao = uiputfile ();
+
