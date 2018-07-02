@@ -72,17 +72,13 @@ dadosAccX3 = dataSheet(:,3);
 
 %Plota 
 
-accXGraph = findobj('Tag', 'axes4');
+accXGraph = findobj('Tag', 'accBruto');
 hold on
 plot (accXGraph, dadosAccX, 'g')
 plot (accXGraph, dadosAccX2, 'r')
 plot (accXGraph, dadosAccX3, 'b')
 legend ('AccX', 'AccY', 'AccZ')
 hold off
-
-
-
-
 
 % --- Executes on button press in filterButtom.
 function filterButtom_Callback(hObject, eventdata, handles)
@@ -111,7 +107,6 @@ result3 = filter(b,a,dadosAccX3);
 
 
 axes4 = findobj('Tag', 'axes4');
-cla reset
 hold on
 plot (axes4, result, 'g')
 plot (axes4, result2, 'r')
@@ -119,17 +114,11 @@ plot (axes4, result3, 'b')
 legend ('AccX', 'AccY', 'AccZ')
 hold off
 
-
-
 %Caixa de diálogo
 %FirstBox = inputdlg({'Email', 'Senha'}, 'Login', [1 50;1 50]);
 %Menu = menu('Avaliações','Salto','Marcha');
 %Arquivo = uigetfile('*xls');
 %Selecao = uiputfile ();
-
-
-
-
 
 % --- Executes on button press in checkbox2.
 function checkbox2_Callback(hObject, eventdata, handles)
