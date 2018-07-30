@@ -82,13 +82,7 @@ hold off
 
 % --- Executes on button press in filterButtom.
 function filterButtom_Callback(hObject, eventdata, handles)
-generateGraphic()
-
-%Caixa de diálogo
-%FirstBox = inputdlg({'Email', 'Senha'}, 'Login', [1 50;1 50]);
-%Menu = menu('Avaliações','Salto','Marcha');
-%Arquivo = uigetfile('*xls');
-%Selecao = uiputfile ();
+generateGraphic('dados')
 
 % --- Executes on button press in checkbox2.
 function checkbox2_Callback(hObject, eventdata, handles)
@@ -140,9 +134,30 @@ result = filter(b,a,dadosAccX);
 result2 = filter(b,a,dadosAccX2);
 result3 = filter(b,a,dadosAccX3);
 
+checkboxX = findobj('Tag', 'checkbox2');
+checkboxXvalue = get(checkboxX,'Value');
+
+checkboxY = findobj('Tag', 'checkbox3');
+checkboxYvalue = get(checkboxY,'Value');
+
+checkboxZ = findobj('Tag', 'checkbox4');
+checkboxZvalue = get(checkboxZ,'Value');
 
 axes4 = findobj('Tag', 'axes4');
 hold on
+if checkboxXvalue > 0
+plot (axes4, result, 'g')
+end
+
+if checkboxYvalue > 0
+plot (axes4, result2, 'r')
+end
+
+if checkboxZvalue > 0
+plot (axes4, result3, 'b')
+end
+
+
 plot (axes4, result, 'g')
 plot (axes4, result2, 'r')
 plot (axes4, result3, 'b')
