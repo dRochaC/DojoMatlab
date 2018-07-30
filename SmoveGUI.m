@@ -89,21 +89,23 @@ function checkbox2_Callback(hObject, eventdata, handles)
 % hObject    handle to checkbox2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-generateGraphic()
+
+
+
 
 % --- Executes on button press in checkbox3.
 function checkbox3_Callback(hObject, eventdata, handles)
 % hObject    handle to checkbox3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-generateGraphic()
+
 
 % --- Executes on button press in checkbox4.
 function checkbox4_Callback(hObject, eventdata, handles)
 % hObject    handle to checkbox4 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-generateGraphic()
+
 
 function generateGraphic()
 global pathJump;
@@ -139,19 +141,26 @@ checkboxZ = findobj('Tag', 'checkbox4');
 checkboxZvalue = get(checkboxZ,'Value');
 
 axes4 = findobj('Tag', 'axes4');
+
 hold on
 
-if checkboxXvalue > 0
+cla (axes4)
+
+if checkboxXvalue < 1
+result = [];
+end
+
+if checkboxYvalue < 1
+result2 = [];
+end
+
+if checkboxZvalue < 1
+result3 = [];
+end
+
 plot (axes4, result, 'g')
-end
-
-if checkboxYvalue > 0
 plot (axes4, result2, 'r')
-end
-
-if checkboxZvalue > 0
 plot (axes4, result3, 'b')
-end
 
 legend ('AccX', 'AccY', 'AccZ')
 hold off
