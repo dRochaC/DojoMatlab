@@ -67,16 +67,16 @@ dataSheet = xlsread(pathJump, 'dados');
 
 %Puxa e manipula os dados
 dadosAccX = dataSheet(:,1);
-dadosAccX2 = dataSheet(:,2);
-dadosAccX3 = dataSheet(:,3);
+dadosAccY = dataSheet(:,2);
+dadosAccZ = dataSheet(:,3);
 
 %Plota 
 
 accXGraph = findobj('Tag', 'accBruto');
 hold on
 plot (accXGraph, dadosAccX, 'g')
-plot (accXGraph, dadosAccX2, 'r')
-plot (accXGraph, dadosAccX3, 'b')
+plot (accXGraph, dadosAccY, 'r')
+plot (accXGraph, dadosAccZ, 'b')
 legend ('AccX', 'AccY', 'AccZ')
 hold off
 
@@ -117,8 +117,8 @@ dataSheet = xlsread(pathJump, 'dados');
 
 %Puxa os dados
 dadosAccX = dataSheet(:,1);
-dadosAccX2 = dataSheet(:,2);
-dadosAccX3 = dataSheet(:,3);
+dadosAccY = dataSheet(:,2);
+dadosAccZ = dataSheet(:,3);
 
 % Transformar caracteres em números
 frequency = str2double(infoSheet(4,2));
@@ -128,8 +128,8 @@ filterOrder = 6;
 Fc = 6;
 [b, a] = butter(filterOrder,Fc/(frequency/2),'low');
 result = filter(b,a,dadosAccX);
-result2 = filter(b,a,dadosAccX2);
-result3 = filter(b,a,dadosAccX3);
+result2 = filter(b,a,dadosAccY);
+result3 = filter(b,a,dadosAccZ);
 
 checkboxX = findobj('Tag', 'checkbox2');
 checkboxXvalue = get(checkboxX,'Value');
